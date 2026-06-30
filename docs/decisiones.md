@@ -125,4 +125,4 @@ Las decisiones se organizan por componente y por vista, siguiendo la matriz de r
 
 ## 5. Conclusión
 
-Las decisiones documentadas muestran una relación directa entre las necesidades de accesibilidad de cada persona definida (María/Alejandro, Carlos Mendoza, Jorge Tamayo) y las soluciones de diseño implementadas en cada vista, evidenciando que el cumplimiento de WCAG 2.2 AA no se trató como una capa añadida al final, sino como criterio de diseño desde el análisis de requisitos.
+Las decisiones documentadas muestran una relación directa entre las necesidades de accesibilidad de cada persona definida (Alejandro, Juan José Osorio, Jorge Tamayo) y las soluciones de diseño implementadas en cada vista, evidenciando que el cumplimiento de WCAG 2.2 AA no se trató como una capa añadida al final, sino como criterio de diseño desde el análisis de requisitos.

@@ -15,7 +15,7 @@ El SGA Universitario permite que tres tipos de usuario — Estudiante, Profesor 
 | Persona | Rol | Necesidad de accesibilidad |
 |---|---|---|
 | Alejandro Escobar | Estudiante | Discapacidad visual — uso de lector de pantalla y zoom de navegador |
-| Carlos Mendoza / Juan José Osorio | Profesor | Limitación motora — navegación exclusiva por teclado |
+| Juan José Osorio | Profesor | Limitación motora — navegación exclusiva por teclado |
 | Jorge Tamayo | Administrador | Conexión a internet inestable / dispositivo de gama baja |
 
 Cada dashboard refleja visualmente las implicaciones de diseño correspondientes a la necesidad de su persona (ver `/docs/decisiones.md` para el detalle de cada decisión).

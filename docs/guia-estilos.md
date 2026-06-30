@@ -130,14 +130,3 @@ Espaciado base en múltiplos de 8px:
 - Todo ícono funcional (sin texto visible junto a él) lleva `aria-label` descriptivo
 
 ---
-
-## 6. Validación de Contraste
-
-Pendiente de ejecutar formalmente con el plugin **Stark** sobre el archivo Figma (`SGA_Universitario.fig`) antes de la entrega final. Las combinaciones documentadas en la tabla de la sección 1 fueron calculadas manualmente y cumplen el mínimo de 4.5:1 exigido por WCAG 2.2 AA para texto normal, y 3:1 para texto grande (18px+, peso 700+).
-
-Checklist de verificación pendiente:
-- [ ] Texto principal sobre fondo blanco
-- [ ] Texto secundario sobre fondo blanco
-- [ ] Texto blanco sobre botón primario
-- [ ] Texto de cada badge de estado sobre su fondo correspondiente
-- [ ] Outline de foco sobre todos los fondos usados en el sistema
