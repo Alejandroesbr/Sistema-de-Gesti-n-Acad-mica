@@ -1,0 +1,157 @@
+@startuml Diagrama_Componentes_SGA
+title Diagrama de Componentes — Sistema de Gestión Académica (SGA)
+
+skinparam componentStyle uml2
+skinparam backgroundColor #FFFFFF
+skinparam component {
+    BackgroundColor #EFF6FF
+    BorderColor #2563EB
+    FontColor #1A1A2E
+}
+skinparam package {
+    BackgroundColor #F8F9FA
+    BorderColor #1A1A2E
+}
+
+package "SPA - SGA Universitario" {
+
+  component [App\n(Router de vistas)] as App
+
+  package "Componentes Base Reutilizables" {
+    component [Button] as Button
+    component [Input] as Input
+    component [Card] as Card
+    component [Table] as Table
+    component [Navbar] as Navbar
+    component [Sidebar] as Sidebar
+    component [Badge de Estado] as Badge
+  }
+
+  package "Vistas - Acceso" {
+    component [LoginPage] as Login
+  }
+
+  package "Vistas - Estudiante" {
+    component [StudentDashboard] as StudentDash
+    component [SubjectDetail] as SubjectDetail
+    component [StudentProfile] as StudentProfile
+    component [EditProfile] as EditProfile
+  }
+
+  package "Vistas - Profesor" {
+    component [ProfessorDashboard] as ProfDash
+    component [GradesManagement] as Grades
+    component [AttendancePage] as Attendance
+  }
+
+  package "Vistas - Administrador" {
+    component [AdminDashboard] as AdminDash
+    component [UsersManagement] as Users
+    component [ReportsPage] as Reports
+  }
+
+  package "Soporte de Accesibilidad" {
+    component [SkipLink] as SkipLink
+    component [FocusVisible\n(estilos globales)] as FocusVisible
+  }
+}
+
+' Relaciones de composición
+App --> Login
+App --> StudentDash
+App --> ProfDash
+App --> AdminDash
+
+Login ..> Button : usa
+Login ..> Input : usa
+Login ..> SkipLink : incluye
+
+StudentDash --> Navbar : usa
+StudentDash --> Sidebar : usa
+StudentDash --> Card : usa
+StudentDash --> Table : usa
+StudentDash --> Badge : usa
+StudentDash --> SubjectDetail : navega a
+StudentDash --> StudentProfile : navega a
+StudentProfile --> EditProfile : navega a
+
+ProfDash --> Navbar : usa
+ProfDash --> Sidebar : usa
+ProfDash --> Card : usa
+ProfDash --> Table : usa
+ProfDash --> Grades : navega a
+ProfDash --> Attendance : navega a
+
+AdminDash --> Navbar : usa
+AdminDash --> Sidebar : usa
+AdminDash --> Table : usa
+AdminDash --> Users : navega a
+AdminDash --> Reports : navega a
+
+Sidebar ..> FocusVisible : aplica
+Button ..> FocusVisible : aplica
+Input ..> FocusVisible : aplica
+
+note right of FocusVisible
+  Aplicado globalmente a todos
+  los elementos interactivos.
+  WCAG 2.2 AA - 2.4.7
+end note
+
+note right of Badge
+  Estado representado con
+  color + texto (no solo color)
+  WCAG 2.2 AA - 1.4.1
+end note
+
+@enduml
+
+@startuml Diagrama_Navegacion_SGA
+title Diagrama de Navegación / Flujo de Interacción — SGA
+
+skinparam backgroundColor #FFFFFF
+skinparam state {
+    BackgroundColor #EFF6FF
+    BorderColor #2563EB
+    FontColor #1A1A2E
+}
+
+[*] --> RolesReferencia : inicio (referencia de diseño)
+
+state RolesReferencia : Vista de 3 personas\n(María, Carlos, Jorge)
+RolesReferencia --> Login : "Ir al Login"
+
+state Login : Formulario de acceso\n+ selector de rol (prototipo)
+
+Login --> DashboardEstudiante : rol = Estudiante
+Login --> DashboardProfesor : rol = Profesor
+Login --> DashboardAdmin : rol = Administrador
+
+state DashboardEstudiante {
+  DashboardEstudiante --> DetalleMateria : "Ver detalles"
+  DashboardEstudiante --> PerfilEstudiante : "Perfil (sidebar)"
+  PerfilEstudiante --> EditarPerfil : "Editar perfil"
+  EditarPerfil --> PerfilEstudiante : "Guardar cambios"
+}
+
+state DashboardProfesor {
+  DashboardProfesor --> GestionCalificaciones : "Editar calificaciones"
+  DashboardProfesor --> Asistencias : "Registrar asistencia"
+}
+
+state DashboardAdmin {
+  DashboardAdmin --> GestionUsuarios : "Buscar y filtrar / Asignar roles"
+  DashboardAdmin --> Reportes : "Exportar / Ver reportes"
+}
+
+DashboardEstudiante --> Login : "Cerrar sesión"
+DashboardProfesor --> Login : "Cerrar sesión"
+DashboardAdmin --> Login : "Cerrar sesión"
+
+note right of Login
+  Skip link disponible en todas
+  las vistas. Foco visible (outline
+  3px) en todo elemento interactivo.
+end note
+
+@enduml
